@@ -3,36 +3,85 @@
 <head>
     <title>FlexiGenAI Client-Facing Product Roadmap (2024–2026)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body { 
-            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; 
             margin: 0; 
-            padding: 20px; 
-            background: white; 
-            line-height: 1.4;
+            padding: 0; 
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
         .container { 
-            max-width: 1600px; 
+            max-width: 1800px; 
             margin: 0 auto; 
-            background: white; 
-            padding: 40px; 
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px 30px 60px 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            animation: slideUp 0.8s ease-out;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         h1 { 
             text-align: center; 
-            font-size: 32px; 
+            font-size: 38px; 
             margin-bottom: 50px; 
-            color: #000; 
+            color: #1a1a1a; 
             font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #FFD100 0%, #1a1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInScale 1s ease-out 0.2s both;
+        }
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         .timeline { 
             position: relative; 
-            margin: 50px 0; 
+            margin: 60px 0; 
         }
         .timeline-line { 
-            height: 4px; 
-            background: #ddd; 
+            height: 6px; 
+            background: linear-gradient(90deg, #e5e7eb 0%, #d1d5db 100%);
             position: relative; 
-            margin: 30px 0; 
+            margin: 40px 0; 
+            border-radius: 3px;
+            overflow: hidden;
+            animation: timelineGrow 1.5s ease-out 0.5s both;
+        }
+        @keyframes timelineGrow {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
         }
         .timeline-line::before { 
             content: ''; 
@@ -41,7 +90,9 @@
             left: 0; 
             height: 100%; 
             width: 14.3%; 
-            background: #FFD100; 
+            background: linear-gradient(90deg, #FFD100 0%, #FFC107 100%);
+            border-radius: 3px;
+            animation: segmentGlow 2s ease-out 1s both;
         }
         .timeline-line::after { 
             content: ''; 
@@ -50,7 +101,9 @@
             left: 14.3%; 
             height: 100%; 
             width: 14.3%; 
-            background: #B3B3B3; 
+            background: linear-gradient(90deg, #B3B3B3 0%, #9CA3AF 100%);
+            border-radius: 3px;
+            animation: segmentGlow 2s ease-out 1.2s both;
         }
         .timeline-line .segment-3 { 
             position: absolute; 
@@ -58,7 +111,9 @@
             left: 28.6%; 
             height: 100%; 
             width: 14.3%; 
-            background: #FFD100; 
+            background: linear-gradient(90deg, #FFD100 0%, #FFC107 100%);
+            border-radius: 3px;
+            animation: segmentGlow 2s ease-out 1.4s both;
         }
         .timeline-line .segment-4 { 
             position: absolute; 
@@ -66,7 +121,9 @@
             left: 42.9%; 
             height: 100%; 
             width: 14.3%; 
-            background: #B3B3B3; 
+            background: linear-gradient(90deg, #B3B3B3 0%, #9CA3AF 100%);
+            border-radius: 3px;
+            animation: segmentGlow 2s ease-out 1.6s both;
         }
         .timeline-line .segment-5 { 
             position: absolute; 
@@ -74,7 +131,9 @@
             left: 57.2%; 
             height: 100%; 
             width: 14.3%; 
-            background: #FFD100; 
+            background: linear-gradient(90deg, #FFD100 0%, #FFC107 100%);
+            border-radius: 3px;
+            animation: segmentGlow 2s ease-out 1.8s both;
         }
         .timeline-line .segment-6 { 
             position: absolute; 
@@ -82,7 +141,9 @@
             left: 71.5%; 
             height: 100%; 
             width: 14.3%; 
-            background: #B3B3B3; 
+            background: linear-gradient(90deg, #B3B3B3 0%, #9CA3AF 100%);
+            border-radius: 3px;
+            animation: segmentGlow 2s ease-out 2s both;
         }
         .timeline-line .segment-7 { 
             position: absolute; 
@@ -90,155 +151,308 @@
             left: 85.8%; 
             height: 100%; 
             width: 14.2%; 
-            background: #FFD100; 
+            background: linear-gradient(90deg, #FFD100 0%, #FFC107 100%);
+            border-radius: 3px;
+            animation: segmentGlow 2s ease-out 2.2s both;
+        }
+        @keyframes segmentGlow {
+            from {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+            to {
+                opacity: 1;
+                transform: scaleX(1);
+            }
         }
         .milestones { 
             display: flex; 
             justify-content: space-between; 
-            margin-top: 20px; 
+            margin-top: 40px; 
+            gap: 15px;
         }
         .milestone { 
             text-align: center; 
             width: 200px; 
             position: relative;
             cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: milestoneFloat 0.8s ease-out both;
+        }
+        .milestone:nth-child(1) { animation-delay: 0.3s; }
+        .milestone:nth-child(2) { animation-delay: 0.4s; }
+        .milestone:nth-child(3) { animation-delay: 0.5s; }
+        .milestone:nth-child(4) { animation-delay: 0.6s; }
+        .milestone:nth-child(5) { animation-delay: 0.7s; }
+        .milestone:nth-child(6) { animation-delay: 0.8s; }
+        .milestone:nth-child(7) { animation-delay: 0.9s; }
+        @keyframes milestoneFloat {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .milestone:hover {
+            transform: translateY(-8px);
         }
         .milestone-icon { 
-            width: 30px; 
-            height: 30px; 
-            margin: 0 auto 10px; 
+            width: 36px; 
+            height: 36px; 
+            margin: 0 auto 15px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             font-size: 16px; 
             color: white; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
         }
-        .major { 
-            background: #FFD100; 
+        .milestone-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: inherit;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        .milestone:hover .milestone-icon::before {
+            opacity: 0.3;
+            transform: scale(1.2);
+        }
+        .milestone.major .milestone-icon { 
+            background: linear-gradient(135deg, #FFD100 0%, #FFC107 100%);
             transform: rotate(45deg); 
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(255, 209, 0, 0.3);
         }
-        .minor { 
-            background: #B3B3B3; 
-            border-radius: 50%; 
+        .milestone.major .milestone-icon::before {
+            background: linear-gradient(135deg, #FFD100 0%, #FFC107 100%);
+            border-radius: 8px;
+        }
+        .milestone.minor .milestone-icon { 
+            background: linear-gradient(135deg, #B3B3B3 0%, #9CA3AF 100%);
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(179, 179, 179, 0.3);
+        }
+        .milestone.minor .milestone-icon::before {
+            background: linear-gradient(135deg, #B3B3B3 0%, #9CA3AF 100%);
+            border-radius: 50%;
         }
         .milestone-title { 
-            font-weight: bold; 
-            margin: 10px 0 5px; 
+            font-weight: 600; 
+            margin: 12px 0 6px; 
             font-size: 14px;
+            color: #1a1a1a;
+            transition: color 0.3s ease;
+            line-height: 1.3;
+        }
+        .milestone:hover .milestone-title {
+            color: #FFD100;
         }
         .milestone-date { 
-            color: #666; 
+            color: #6b7280; 
             font-size: 12px; 
-            margin-bottom: 5px; 
+            margin-bottom: 6px; 
+            font-weight: 500;
         }
         .milestone-theme { 
             font-style: italic; 
-            color: #666; 
+            color: #9ca3af; 
             font-size: 11px; 
+            line-height: 1.3;
         }
-        .milestone-details {
-            position: absolute;
-            top: 200px;
+        .years { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 40px; 
+            font-weight: 600; 
+            font-size: 18px; 
+            color: #374151;
+        }
+        
+        /* Fixed popup that appears in a dedicated space */
+        .popup-container {
+            position: fixed;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            background: white;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translate(-50%, -50%);
+            width: 500px;
+            max-width: 90vw;
+            max-height: 80vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            overflow-y: auto;
         }
-        .milestone:hover .milestone-details {
+        .popup-container.show {
             opacity: 1;
             visibility: visible;
         }
-        .milestone-details h4 {
-            font-size: 16px;
+        .popup-container h3 {
+            font-size: 20px;
             font-weight: 600;
-            color: #000;
-            margin-bottom: 12px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFD100 0%, #1a1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .milestone-details ul {
+        .popup-container ul {
             list-style: none;
             padding: 0;
         }
-        .milestone-details li {
-            font-size: 12px;
-            color: #333;
-            margin-bottom: 6px;
-            padding-left: 15px;
+        .popup-container li {
+            font-size: 14px;
+            color: #374151;
+            margin-bottom: 10px;
+            padding-left: 20px;
             position: relative;
+            transition: color 0.3s ease;
+            line-height: 1.5;
         }
-        .milestone-details li:before {
+        .popup-container li:hover {
+            color: #FFD100;
+        }
+        .popup-container li:before {
             content: "•";
             color: #FFD100;
             font-weight: bold;
             position: absolute;
             left: 0;
+            font-size: 16px;
         }
-        .years { 
-            display: flex; 
-            justify-content: space-between; 
-            margin-top: 30px; 
-            font-weight: bold; 
-            font-size: 18px; 
+        .popup-container .note {
+            font-size: 12px;
+            color: #666;
+            margin-top: 15px;
+            font-style: italic;
+            padding: 10px;
+            background: rgba(255, 209, 0, 0.1);
+            border-radius: 6px;
+            border-left: 3px solid #FFD100;
         }
+        
         .bottom { 
             display: flex; 
-            margin-top: 120px; 
-            gap: 50px; 
+            justify-content: center;
+            margin-top: 60px; 
+            margin-bottom: 20px;
         }
-        .legend, .faq { 
-            flex: 1; 
-            background: #f5f5f5; 
-            padding: 20px; 
-            border-radius: 8px; 
+        .legend { 
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 20px; 
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            max-width: 350px;
         }
-        .legend h3, .faq h3 { 
+        .legend:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        .legend h3 { 
             margin-top: 0; 
-            font-size: 18px;
+            font-size: 14px;
+            color: #1a1a1a;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 10px;
         }
         .legend-item { 
             display: flex; 
             align-items: center; 
-            margin: 10px 0; 
+            margin: 8px 0; 
+            transition: transform 0.3s ease;
+        }
+        .legend-item:hover {
+            transform: translateX(3px);
         }
         .legend-icon { 
-            width: 20px; 
-            height: 20px; 
+            width: 16px; 
+            height: 16px; 
             margin-right: 10px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            font-size: 12px; 
+            font-size: 10px; 
             color: white; 
+            border-radius: 4px;
         }
         .legend-major { 
-            background: #FFD100; 
+            background: linear-gradient(135deg, #FFD100 0%, #FFC107 100%);
             transform: rotate(45deg); 
         }
         .legend-minor { 
-            background: #B3B3B3; 
+            background: linear-gradient(135deg, #B3B3B3 0%, #9CA3AF 100%);
             border-radius: 50%; 
         }
-        .faq-item {
-            margin-bottom: 15px;
+        .legend-text {
+            font-size: 11px;
+            color: #374151;
+            font-weight: 500;
         }
-        .faq-q {
-            font-weight: bold;
-            margin-bottom: 5px;
+        /* Floating particles animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
-        .faq-a {
-            color: #666;
-            font-size: 14px;
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 209, 0, 0.3);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.8;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 2.5s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+    </div>
+
     <div class="container">
         <h1>FlexiGenAI Client-Facing Product Roadmap (2024–2026)</h1>
         
@@ -257,122 +471,53 @@
             </div>
             
             <div class="milestones">
-                <div class="milestone">
-                    <div class="milestone-icon major">◆</div>
-                    <div class="milestone-title">Alpha → Beta</div>
+                <div class="milestone major" data-release="major1">
+                    <div class="milestone-icon">◆</div>
+                    <div class="milestone-title">Alpha → Beta Launch</div>
                     <div class="milestone-date">May–Sep 2024</div>
                     <div class="milestone-theme">"From Prototype to Platform"</div>
-                    <div class="milestone-details">
-                        <h4>Major Release 1</h4>
-                        <ul>
-                            <li>Visual Workflow Canvas</li>
-                            <li>Solution Marketplace & Templates</li>
-                            <li>Standalone Chatbot & Preview Bots</li>
-                            <li>SSO and RBAC access controls</li>
-                            <li>Citation & Logging View</li>
-                        </ul>
-                    </div>
                 </div>
                 
-                <div class="milestone">
-                    <div class="milestone-icon minor">●</div>
+                <div class="milestone minor" data-release="minor1">
+                    <div class="milestone-icon">●</div>
                     <div class="milestone-title">Administrative Expansion</div>
                     <div class="milestone-date">Oct–Dec 2024</div>
                     <div class="milestone-theme">"Admin & Document Intelligence"</div>
-                    <div class="milestone-details">
-                        <h4>Minor Release</h4>
-                        <ul>
-                            <li>Admin Portal 1.0</li>
-                            <li>Document Generator & Chat History</li>
-                            <li>Agentic Workflow (Preview)</li>
-                            <li>SharePoint, Word, PowerPoint Connectors</li>
-                            <li>Enhanced FlexiGen.ai UI</li>
-                        </ul>
-                    </div>
                 </div>
                 
-                <div class="milestone">
-                    <div class="milestone-icon major">◆</div>
+                <div class="milestone major" data-release="major2">
+                    <div class="milestone-icon">◆</div>
                     <div class="milestone-title">General Availability</div>
                     <div class="milestone-date">Jan–Mar 2025</div>
-                    <div class="milestone-theme">"Trusted, Observable, Ready for Enterprise"</div>
-                    <div class="milestone-details">
-                        <h4>Major Release 2</h4>
-                        <ul>
-                            <li>Trusted AI Filters 2.0</li>
-                            <li>Observability Dashboard</li>
-                            <li>Admin Portal 2.0</li>
-                            <li>In-Chat Document Upload</li>
-                            <li>DeepSeek Model Integration</li>
-                        </ul>
-                    </div>
+                    <div class="milestone-theme">"Responsible, Observable, Enterprise Ready"</div>
                 </div>
                 
-                <div class="milestone">
-                    <div class="milestone-icon minor">●</div>
+                <div class="milestone minor" data-release="minor2">
+                    <div class="milestone-icon">●</div>
                     <div class="milestone-title">Platform Expansion</div>
                     <div class="milestone-date">Apr–Jun 2025</div>
                     <div class="milestone-theme">"Integrations & Intelligence"</div>
-                    <div class="milestone-details">
-                        <h4>Minor Release</h4>
-                        <ul>
-                            <li>Power Platform & CoPilot Integrations</li>
-                            <li>Snowflake & AWS Connectors</li>
-                            <li>Document Reviewer Enhancements</li>
-                            <li>Automated Testing Framework</li>
-                        </ul>
-                    </div>
                 </div>
                 
-                <div class="milestone">
-                    <div class="milestone-icon major">◆</div>
+                <div class="milestone major" data-release="major3">
+                    <div class="milestone-icon">◆</div>
                     <div class="milestone-title">FlexiGenAI 2.0</div>
                     <div class="milestone-date">Jul–Nov 2025</div>
                     <div class="milestone-theme">"The No-Code Agentic Era"</div>
-                    <div class="milestone-details">
-                        <h4>Major Release 3</h4>
-                        <ul>
-                            <li>Full UI/UX Revamp (Light/Dark Mode)</li>
-                            <li>AI-Guided No-Code Assistant</li>
-                            <li>Multi-Tenancy & License Management</li>
-                            <li>A2A & MCP Workflow Support</li>
-                            <li>Private AI Enablement</li>
-                        </ul>
-                    </div>
                 </div>
                 
-                <div class="milestone">
-                    <div class="milestone-icon minor">●</div>
+                <div class="milestone minor" data-release="minor3">
+                    <div class="milestone-icon">●</div>
                     <div class="milestone-title">Feature Polishing</div>
                     <div class="milestone-date">Q1 2026</div>
                     <div class="milestone-theme">"User Delight & Multi-Flow Simplicity"</div>
-                    <div class="milestone-details">
-                        <h4>Minor Release</h4>
-                        <ul>
-                            <li>Enhanced Search & Solution Library</li>
-                            <li>Sticky Notes & Connector Validation</li>
-                            <li>Guided Walkthroughs</li>
-                            <li>Canvas Tools</li>
-                        </ul>
-                    </div>
                 </div>
                 
-                <div class="milestone">
-                    <div class="milestone-icon major">◆</div>
+                <div class="milestone major" data-release="major4">
+                    <div class="milestone-icon">◆</div>
                     <div class="milestone-title">Flexi: Build with AI</div>
                     <div class="milestone-date">Mid–Late 2026</div>
                     <div class="milestone-theme">"From Building to Conversing with AI"</div>
-                    <div class="milestone-details">
-                        <h4>Major Release 4</h4>
-                        <ul>
-                            <li>Natural-Language Solution Builder ("Flexi")</li>
-                            <li>Published Solution Library</li>
-                            <li>Video Tutorials & Themed Experiences</li>
-                            <li>Agent Library & Collaboration Tools</li>
-                            <li>Teams Integration</li>
-                            <li>Private Deployments</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -382,26 +527,143 @@
                 <h3>Legend</h3>
                 <div class="legend-item">
                     <div class="legend-icon legend-major">◆</div>
-                    <span>Major Release — Long-term support (6-month cycle)</span>
+                    <span class="legend-text">Major Release — Long-term support (6-month cycle)</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-icon legend-minor">●</div>
-                    <span>Minor Release — Feature enhancements (quarterly)</span>
-                </div>
-            </div>
-            
-            <div class="faq">
-                <h3>FAQ</h3>
-                <div class="faq-item">
-                    <div class="faq-q">How often are new features released?</div>
-                    <div class="faq-a">Major releases occur every 6 months with significant platform capabilities. Minor releases provide quarterly feature enhancements and improvements.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">When is FlexiGenAI 2.0 launching?</div>
-                    <div class="faq-a">FlexiGenAI 2.0 is scheduled for July–November 2025, introducing the no-code agentic era with complete UI/UX revamp and AI-guided development.</div>
+                    <span class="legend-text">Minor Release — Feature enhancements (quarterly)</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Fixed popup that appears centered on screen -->
+    <div class="popup-container" id="popup">
+        <h3 id="popupTitle"></h3>
+        <ul id="popupList"></ul>
+        <div class="note" id="popupNote"></div>
+    </div>
+
+    <script>
+        const featureData = {
+            major1: {
+                title: "Major Release 1 — Alpha → Beta Launch",
+                features: [
+                    "Visual Workflow Canvas (drag-and-drop builder)",
+                    "Solution Marketplace & Templates for reuse",
+                    "Standalone Chatbot & Preview Bots",
+                    "Role-Based Access Controls (SSO, RBAC)",
+                    "Citation & Logging for transparency"
+                ],
+                note: "(First fully interactive build experience in FlexiGen.ai)"
+            },
+            minor1: {
+                title: "Minor Release — Administrative Expansion",
+                features: [
+                    "Admin Portal 1.0 (manage org-level settings)",
+                    "Document Generator & Chat History",
+                    "Agentic Workflow (Preview)",
+                    "File Connectors: SharePoint, Word, PowerPoint, Images",
+                    "Enhanced Solution Landing Pages"
+                ],
+                note: ""
+            },
+            major2: {
+                title: "Major Release 2 — General Availability",
+                features: [
+                    "Responsible AI Features (bias detection, transparency, governance tags)",
+                    "Observability Dashboard (usage metrics, process insights)",
+                    "Admin Portal 2.0 (solution management console)",
+                    "In-Chat Document Upload & Review Tools",
+                    "DeepSeek Model Integration (improved accuracy and reasoning)"
+                ],
+                note: ""
+            },
+            minor2: {
+                title: "Minor Release — Platform Expansion",
+                features: [
+                    "Microsoft Power Platform & CoPilot Integrations",
+                    "Snowflake & AWS Data Connectors",
+                    "Document Reviewer Enhancements",
+                    "Automated Testing Framework (reliability improvements)"
+                ],
+                note: ""
+            },
+            major3: {
+                title: "Major Release 3 — FlexiGenAI 2.0",
+                features: [
+                    "Full UI/UX Revamp (Light/Dark Mode + new dashboard)",
+                    "AI-Guided No-Code Development Assistant",
+                    "Multi-Tenancy & Workspace Management",
+                    "License Management Console",
+                    "A2A (Agent-to-Agent) & MCP (Multi-Control Plane) Workflows",
+                    "Private AI Deployment Support"
+                ],
+                note: ""
+            },
+            minor3: {
+                title: "Minor Release — Feature Polishing",
+                features: [
+                    "Enhanced Search & Solution Library",
+                    "Sticky Notes & Connector Validation",
+                    "Guided Walkthroughs",
+                    "Canvas Tools & Visual Enhancements"
+                ],
+                note: ""
+            },
+            major4: {
+                title: "Major Release 4 — Flexi: Build with AI",
+                features: [
+                    "Natural-Language Solution Builder (\"Flexi\")",
+                    "Published Solution Library (share, rate, reuse)",
+                    "Dynamic End-User Experience (themes, video tutorials)",
+                    "Agent Library & Team Collaboration Tools",
+                    "Microsoft Teams Integration",
+                    "Private AI Deployments at Scale"
+                ],
+                note: ""
+            }
+        };
+
+        function showPopup(releaseId) {
+            const data = featureData[releaseId];
+            if (data) {
+                document.getElementById('popupTitle').textContent = data.title;
+                
+                const popupList = document.getElementById('popupList');
+                popupList.innerHTML = '';
+                data.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    popupList.appendChild(li);
+                });
+                
+                const note = document.getElementById('popupNote');
+                if (data.note) {
+                    note.textContent = data.note;
+                    note.style.display = 'block';
+                } else {
+                    note.style.display = 'none';
+                }
+                
+                document.getElementById('popup').classList.add('show');
+            }
+        }
+
+        function closePopup() {
+            document.getElementById('popup').classList.remove('show');
+        }
+
+        document.querySelectorAll('.milestone').forEach(milestone => {
+            milestone.addEventListener('mouseenter', function() {
+                const releaseId = this.getAttribute('data-release');
+                showPopup(releaseId);
+            });
+            
+            milestone.addEventListener('mouseleave', function() {
+                closePopup();
+            });
+        });
+    </script>
 </body>
 </html>
